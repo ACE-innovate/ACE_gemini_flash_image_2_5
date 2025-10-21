@@ -170,7 +170,7 @@ class ACE_gemini_flash_image_2_5_multi:
             "optional": {
                 "images": ("IMAGE",),
                 "api_key": ("STRING", {"default": ""}),
-                "model": ("STRING", {"default": "gemini-2.5-flash-image-preview"}),
+                "model": ("STRING", {"default": "gemini-2.5-flash-image"}),
                 "temperature": ("FLOAT", {"default": 0.6, "min": 0.0, "max": 2.0, "step": 0.05}),
                 "max_output_tokens": ("INT", {"default": 2048, "min": 1, "max": 32768}),
                 "streaming": ("BOOLEAN", {"default": False}),       # safer default
@@ -242,7 +242,7 @@ class ACE_gemini_flash_image_2_5_multi:
             prompt: str,
             images: torch.Tensor = None,
             api_key: str = "",
-            model: str = "gemini-2.5-flash-image-preview",
+            model: str = "gemini-2.5-flash-image",
             temperature: float = 0.6,
             max_output_tokens: int = 2048,
             streaming: bool = False,
@@ -264,7 +264,7 @@ class ACE_gemini_flash_image_2_5_multi:
 
         client = genai.Client(api_key=key)
         contents, trunc_note = self._build_contents(prompt, images, int(max_inline_images))
-        mdl = (model or "gemini-2.5-flash-image-preview").strip()
+        mdl = (model or "gemini-2.5-flash-image").strip()
 
         # Always ask for text+image to surface any safety/text responses
         cfg = gtypes.GenerateContentConfig(
